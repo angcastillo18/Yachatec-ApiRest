@@ -1,6 +1,8 @@
 import express from "express";
 import morgan from "morgan";
 
+import schoolRoutes from "./routes/schools.routes.js";
+
 const app = express();
 
 //settings
@@ -11,5 +13,9 @@ app.set("case sensitive routing", true);
 //middlewares
 app.use(express.json());
 app.use(morgan("dev"));
+
+// routes
+app.use('/api', schoolRoutes);
+
 
 export default app;

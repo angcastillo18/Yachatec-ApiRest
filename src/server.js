@@ -15,19 +15,21 @@ import { sequelize } from "./database/db.js";
 // import './models/Student.js';
 // import './models/StudentCourse.js';
 // import './models/Teacher.js';
-//routes
-import UserRoutes from "./routes/users.js";
 
 //routes
-app.use(UserRoutes)
+// import UserRoutes from "./routes/users.js";
+
+// app.use('/api', routerProgramation);
+// //routes
+// app.use(UserRoutes)
 
 
 async function main() {
 
     try {
         // await sequelize.authenticate();
-        await sequelize.sync({force: true}); //* borra la tabla y la vuelve a CREAR
-        console.log("All models were synchronized successfully.");
+        // await sequelize.sync({ force: true }); //* borra la tabla y la vuelve a CREAR
+        // console.log("All models were synchronized successfully.");
         //¨* sin nada, soo la crea si es que no existe,
         app.listen(app.get("port"), () => {
             console.log(`Server ${app.get("appName")} listening on port ${app.get("port")}`);
