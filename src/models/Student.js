@@ -45,7 +45,7 @@ export const Student = sequelize.define('Student', {
     },
     level: {
         type: DataTypes.INTEGER,
-        defaultValue: 0
+        defaultValue: 1
     },
 }, { tableName: 'students' });
 //* agregar en el segundo objeto , timestamps: false si es que no quiero que cree el created_at y updated_at por default

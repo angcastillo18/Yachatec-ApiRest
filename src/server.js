@@ -16,18 +16,11 @@ import { sequelize } from "./database/db.js";
 // import './models/StudentCourse.js';
 // import './models/Teacher.js';
 
-//routes
-// import UserRoutes from "./routes/users.js";
-
-// app.use('/api', routerProgramation);
-// //routes
-// app.use(UserRoutes)
-
 
 async function main() {
 
     try {
-        // await sequelize.authenticate();
+        await sequelize.authenticate();
         // await sequelize.sync({ force: true }); //* borra la tabla y la vuelve a CREAR
         // console.log("All models were synchronized successfully.");
         //¨* sin nada, soo la crea si es que no existe,
