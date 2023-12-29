@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { register } from "../controllers/authentication.controllers.js"
+import { register, login } from "../controllers/authentication.controllers.js"
 
 const router = Router();
 
@@ -7,6 +7,8 @@ const router = Router();
 // router.get('/students/:id', getStudent)
 
 router.post('/auth/register', register)
+router.post('/auth/login', login)
+
 
 // router.put('/students/:id', updateStudent)
 
