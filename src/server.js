@@ -24,8 +24,8 @@ async function main() {
         // await sequelize.sync({ force: true }); //* borra la tabla y la vuelve a CREAR
         // console.log("All models were synchronized successfully.");
         //¨* sin nada, soo la crea si es que no existe,
-        app.listen(app.get("port"), () => {
-            console.log(`Server ${app.get("appName")} listening on port ${app.get("port")}`);
+        app.listen(process.env.PORT || 3000, () => {
+            console.log(`Server ${app.get("appName")} listening on port ${process.env.PORT || 3000}`);
         })
         console.log('Connection has been established successfully.');
     } catch (error) {

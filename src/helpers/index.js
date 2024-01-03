@@ -23,3 +23,24 @@ export const generateToken = (payload) => {
         console.log(error);
     }
 }
+
+export const generateRefreshToken = (payload, res) => {
+    const expiresIn = 60 * 69 * 24 * 30; // 30 days ,because is refresh token
+    try {
+        // send by cookie the refresh token, and saved in every request
+        const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH, { expiresIn });
+        // set cookies refreshToken
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: false, //* secure is true when we are working with https
+            expires: new Date(Date.now() + expiresIn * 1000), //* expires
+        });
+
+        return {
+            refreshToken,
+            expires: expiresIn
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}

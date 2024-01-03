@@ -1,5 +1,5 @@
 import { Student } from "../models/Student.js";
-import { hashPassword, isMatch, generateToken } from "../helpers/index.js";
+import { hashPassword, isMatch, generateToken, generateRefreshToken } from "../helpers/index.js";
 
 export const register = async (req, res) => {
     try {
@@ -23,7 +23,11 @@ export const register = async (req, res) => {
             parentEmail,
         })
 
-        return res.status(200).json(newStudent)
+        //*generate JWT
+        const { token, expiresIn } = generateToken({ uid: newStudent.id })
+        generateRefreshToken({ uid: newStudent.id }, res)
+
+        return res.status(200).json({ token, expiresIn })
 
     } catch (error) {
         return res.status(400).json({ message: error.message })
@@ -51,9 +55,29 @@ export const login = async (req, res) => {
 
         //*generate JWT
         const { token, expiresIn } = generateToken({ uid: student.id })
+        generateRefreshToken({ uid: student.id }, res) //* essential to refresh the principal token
 
         return res.json({ token, expiresIn })
 
+    } catch (error) {
+        return res.status(400).json({ message: error.message })
+    }
+}
+
+export const logout = async (req, res) => {
+    res.clearCookie('refreshToken');
+
+    return res.sendStatus(204);
+}
+
+export const refreshToken = async (req, res) => {
+
+    try {
+        const { uid } = req //* uid from requireRefreshToken
+
+        const { token, expiresIn } = generateToken({ uid }) //generate new token
+
+        return res.json({ token, expiresIn })
     } catch (error) {
         return res.status(400).json({ message: error.message })
     }

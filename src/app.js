@@ -1,8 +1,11 @@
 import express from "express";
 import morgan from "morgan";
 
+import 'dotenv/config'
+
 import cors from "cors";
 import compression from "compression";
+import cookieParser from "cookie-parser";
 //*routes imports
 import schoolRoutes from "./routes/schools.routes.js";
 import scholarLevelRoutes from "./routes/scholarlevels.routes.js";
@@ -17,15 +20,25 @@ const app = express();
 
 //settings
 app.set("appName", "Yachatec API Rest");
-app.set("port", 3000);
 app.set("case sensitive routing", true);
+
+//CORS configurations middleware
+const whiteList = [undefined, process.env.ORIGIN1]
+//*undefined is for testing the same localhost
+app.use(cors({
+    // credentials: true,
+    origin: function (origin, callback) {
+        if (whiteList.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error('ERROR by CORS:' + origin + " Not allowed"));
+    }
+}));
 
 //middlewares
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors({
-    credentials: true,
-}));
+app.use(cookieParser());
 app.use(compression());
 
 

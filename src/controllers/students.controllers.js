@@ -11,8 +11,12 @@ export const getStudents = async (req, res) => {
 
 export const getStudent = async (req, res) => {
     try {
-        const { id } = req.params
-        const student = await Student.findByPk(id)
+        const { uid } = req //* uid from requireToken
+        const student = await Student.findByPk(uid, {
+            attributes: {
+                exclude: ['password']
+            }
+        })
 
         if (!student) return res.status(404).json({ message: 'Student not found' })
 
@@ -27,7 +31,7 @@ export const updateStudent = async (req, res) => {
         const { id } = req.params
         const bodyData = req.body
         //* update keys dynamically
-        const fieldsAvailable = ['name','email','password','profilePicture','experience','coins','parentEmail','level'] // keys available to update 
+        const fieldsAvailable = ['name', 'email', 'password', 'profilePicture', 'experience', 'coins', 'parentEmail', 'level'] // keys available to update 
         //* filter body data, to update only available keys
         let dataSended = Object.entries(bodyData);
         let keysFiltered = dataSended.filter(([key, value]) => fieldsAvailable.includes(key));

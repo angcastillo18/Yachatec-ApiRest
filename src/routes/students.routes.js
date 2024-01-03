@@ -5,7 +5,10 @@ import { requireToken } from "../middlewares/requireToken.js"
 const router = Router();
 
 router.get('/students', getStudents)
-router.get('/students/:id', requireToken, getStudent)
+router.get('/student/', requireToken, getStudent)
+
+//* principal routes to init the app frontend ...
+
 
 router.put('/students/:id', updateStudent)
 

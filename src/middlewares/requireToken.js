@@ -11,8 +11,8 @@ export const requireToken = (req, res, next) => {
             // return res.status(401).json({ message: "No token provided" })
         }
         token = token.split(" ")[1]
-        const { uid } = jwt.verify(token, process.env.JWT_SECRET)
-        req.uid = uid;
+        const { uid } = jwt.verify(token, process.env.JWT_SECRET) //decode
+        req.uid = uid; //* send to next middleware for req
 
         next()
     } catch (error) {
