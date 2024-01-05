@@ -22,14 +22,14 @@ const app = express();
 app.set("appName", "Yachatec API Rest");
 app.set("case sensitive routing", true);
 
+
 //CORS configurations middleware
-const whiteList = process.env.MODE === 'DEV' ? ['http://localhost:3000', process.env.ORIGIN1] : [process.env.ORIGIN1]
+const whiteList = process.env.MODE === 'DEV' ? ['http://localhost:3000'] : [process.env.ORIGIN1, process.env.ORIGIN2]
 //*undefined is for testing the same localhost
 app.use(cors({
     credentials: true, //Allow credentials (cookies)
     origin: function (origin, callback) {
         if (whiteList.includes(origin)) {
-            console.log("origin", origin);
             return callback(null, true);
         }
         return callback(new Error('ERROR by CORS:' + origin + " Not allowed"));
