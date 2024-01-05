@@ -44,3 +44,22 @@ export const generateRefreshToken = (payload, res) => {
         console.log(error);
     }
 }
+
+export const corsCallback = () => {
+    if (process.env.MODE === 'developer') {
+        return function (origin, callback) {
+            if (!origin) { //* because in same dominio, the origin is undefined
+                return callback(null, true);
+            }
+            return callback(new Error('ERROR by CORS:' + origin + " Not allowed"));
+        }
+    } else {
+        const whiteList = [process.env.ORIGIN1]
+        return function (origin, callback) {
+            if (whiteList.includes(origin)) {
+                return callback(null, true);
+            }
+            return callback(new Error('ERROR by CORS:' + origin + " Not allowed"));
+        }
+    }
+}

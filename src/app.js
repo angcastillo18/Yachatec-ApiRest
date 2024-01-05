@@ -4,6 +4,7 @@ import morgan from "morgan";
 import 'dotenv/config'
 
 import cors from "cors";
+import { corsCallback } from "./helpers/index.js"
 import compression from "compression";
 import cookieParser from "cookie-parser";
 //*routes imports
@@ -24,16 +25,9 @@ app.set("case sensitive routing", true);
 
 
 //CORS configurations middleware
-const whiteList = process.env.MODE === 'DEV' ? ['http://localhost:3000'] : [process.env.ORIGIN1, process.env.ORIGIN2]
-//*undefined is for testing the same localhost
 app.use(cors({
     credentials: true, //Allow credentials (cookies)
-    origin: function (origin, callback) {
-        if (whiteList.includes(origin)) {
-            return callback(null, true);
-        }
-        return callback(new Error('ERROR by CORS:' + origin + " Not allowed"));
-    }
+    origin: corsCallback()
 }));
 
 //middlewares
