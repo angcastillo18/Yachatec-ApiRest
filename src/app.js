@@ -46,6 +46,6 @@ app.use('/api', teachers);
 app.use('/api', courses);
 app.use('/api', students);
 app.use('/api', authentication);
-app.get('/api', (req, res) => res.json('My API Rest Yachatec running! 😇 ')); // to test in aws.
+app.get('/api', (req, res) => res.json('My API Rest Yachatec running with pipeline! 😇 ')); // to test in aws.
 
 export default app;
