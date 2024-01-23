@@ -3,6 +3,7 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/Yachatec-ApiRest
+file_exists_behavior: OVERWRITE
 hooks:
   AfterInstall:
     - location: deploy/after_install.sh
