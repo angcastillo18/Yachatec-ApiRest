@@ -1,34 +1,41 @@
 import app from "./app.js";
 import { sequelize } from "./database/db.js";
-// MODELS
+
+//*INIT MODELS CREATION
 // import './models/Achievement.js';
 // import './models/AchievementStudent.js';
 // import './models/Challenge.js';
-// import './models/Chapter.js';
-// import { Course } from './models/Course.js';
-// import './models/Lesson.js';
+// import './models/Course.js';
 // import './models/Question.js';
-// import {ScholarLevel} from'./models/ScholarLevel.js';
+// import './models/ScholarLevel.js';
 // import './models/School.js';
 // import './models/Store.js';
 // import './models/StoreItem.js';
 // import './models/Student.js';
-// import {StudentCourse} from './models/StudentCourse.js';
-// import {Teacher} from './models/Teacher.js';
-
+// import './models/StudentCourse.js';
+// import './models/Teacher.js';
+// import { Chapter } from './models/Chapter.js';
+// import { Question } from './models/Question.js';
+// import { Course } from './models/Course.js';
+// import { StudentCourse } from "./models/StudentCourse.js";
 
 async function main() {
 
     try {
         await sequelize.authenticate();
 
-        // await Course.sync({ force: true})
+        //* drop tables
+        // Chapter.drop({}).then(() => {
+        //     console.log('Table deleted successfully');
+        // }).catch((error) => {
+        //     console.error('Error deleting table', error);
+        // });
+        //* alter tables
+        // await StudentCourse.sync({ alter: true })
+        //* force , drop and create again the table
+        // await Question.sync({ force: true })
 
-        // await ScholarLevel.sync({ alter: true })
-        // await Teacher.sync({ alter: true })
-        // await StudentCourse.sync({ force: true})
-        // await sequelize.sync({ alter: true });
-        // await sequelize.sync({ force: true }); //* borra la tabla y la vuelve a CREAR
+        // await sequelize.sync({ force: true }); //! affect all tables
         // console.log("All models were synchronized successfully.");
         //¨* sin nada, soo la crea si es que no existe,
         app.listen(process.env.PORT || 3000, () => {

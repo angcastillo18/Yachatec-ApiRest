@@ -7,17 +7,16 @@ export const Question = sequelize.define('Question', {
         primaryKey: true,
         autoIncrement: true
     },
-    title:{
+    statement:{
         type: DataTypes.STRING,
         allowNull: false
     },
     description:{
         type: DataTypes.STRING,
-        allowNull: false
     },
     type: {
         type: DataTypes.ENUM,
-        values: ['Simple', 'DragAndDrop', 'Reorder','Audio','Video'],
+        values: ['Simple','Multiple','DragAndDrop', 'Reorder','Audio','Video'],
         allowNull: false,
     },
     answer:{

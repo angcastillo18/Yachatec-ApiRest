@@ -7,8 +7,8 @@ const router = Router();
 router.get('/students', getStudents)
 router.get('/student/', requireToken, getStudent)
 
-//* principal routes to init the app frontend ...
-router.get('/student/main_data', requireToken, getStudentMainData)
+//* principal route
+router.get('/student/main_data', requireToken, getStudentMainData) //?frontend route
 
 router.put('/students/:id', updateStudent)
 

@@ -7,17 +7,10 @@ export const StudentCourse = sequelize.define('StudentCourse', {
         primaryKey: true,
         autoIncrement: true
     },
-    progress: {
-        type: DataTypes.DOUBLE,
+    currentChapterOrder: {
+        type: DataTypes.INTEGER,
         default: 0.0
     },
-    currentChapterLesson: { //* why? IT COULD BE  json to save chapter and lesson
-        type: DataTypes.JSON,
-        default: {
-            chapter: 0,
-            lesson: 0
-        }
-    }
 }, { tableName: 'StudentCourses', timestamps: false });
 
 // StudentCourse.sync({ force: true})

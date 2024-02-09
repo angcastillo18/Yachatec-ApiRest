@@ -1,6 +1,6 @@
 import { sequelize } from "../database/db.js";
 import { DataTypes } from 'sequelize';
-import {Lesson} from "./Lesson.js";
+import { Question } from "./Question.js";
 
 export const Chapter = sequelize.define('Chapter', {
     id: {
@@ -8,19 +8,27 @@ export const Chapter = sequelize.define('Chapter', {
         primaryKey: true,
         autoIncrement: true
     },
-    title:{
+    title: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    backgroundImg:{
+    backgroundImg: {
         type: DataTypes.STRING
     },
-    order:{
+    experience: {
         type: DataTypes.INTEGER,
         defaultValue: 0
-    }
+    },
+    description: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    order: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+    },
 
-}, { tableName: 'Chapters',timestamps: false });
+}, { tableName: 'Chapters', timestamps: false });
 
-Chapter.hasMany(Lesson, { foreignKey: 'chapterId',sourceKey: 'id' })
-Lesson.belongsTo(Chapter, { foreignKey: 'chapterId',targetId: 'id' })
+Chapter.hasMany(Question, { foreignKey: 'chapterId', sourceKey: 'id' })
+Question.belongsTo(Chapter, { foreignKey: 'chapterId', targetId: 'id' })

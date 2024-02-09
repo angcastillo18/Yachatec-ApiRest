@@ -16,6 +16,8 @@ import teachers from "./routes/teachers.routes.js";
 import courses from "./routes/courses.routes.js";
 import students from "./routes/students.routes.js";
 import authentication from "./routes/authentication.routes.js";
+import studentCourses from "./routes/studentcourses.routes.js";
+import chapters from "./routes/chapter.routes.js";
 
 const app = express();
 
@@ -46,6 +48,8 @@ app.use('/api', teachers);
 app.use('/api', courses);
 app.use('/api', students);
 app.use('/api', authentication);
+app.use('/api', studentCourses);
+app.use('/api', chapters);
 app.get('/api', (req, res) => res.json('My API Rest Yachatec running with pipeline !!! 😇😇⚽ ')); // to test in aws.
 
 export default app;

@@ -13,7 +13,7 @@ export const Course = sequelize.define('Course', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    progressMax: {
+    totalChapters: {
         type: DataTypes.INTEGER,
         default: 30
     },

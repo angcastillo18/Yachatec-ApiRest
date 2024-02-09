@@ -7,9 +7,10 @@ const router = Router();
 // router.get('/students/:id', getStudent)
 
 router.post('/auth/register', register)
-router.post('/auth/login', login)
-router.get('/auth/refresh', requireRefreshToken, refreshToken)
-router.get('/auth/logout', logout)
+
+router.post('/auth/login', login) //?frontend route
+router.get('/auth/refresh', requireRefreshToken, refreshToken) //?frontend route
+router.get('/auth/logout', logout) //?frontend route
 
 
 // router.put('/students/:id', updateStudent)

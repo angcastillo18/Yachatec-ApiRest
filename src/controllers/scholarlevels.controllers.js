@@ -45,22 +45,22 @@ export const getScholarLevelStoreData = async (req, res) => {
     try {
         const { uid } = req //* uid from requireToken
         if (!uid) return res.status(401).json({ message: 'Unauthorized' })
-        
+
         const { id } = req.params
         const storeInfo = await Store.findOne({
-            where:{
+            where: {
                 scholarLevelId: id
             },
             include: [
                 {
                     model: StoreItem,
                     attributes: {
-                        exclude: ['createdAt','updatedAt','storeId']
+                        exclude: ['createdAt', 'updatedAt', 'storeId']
                     }
                 }
             ],
             attributes: {
-                exclude: ['createdAt','updatedAt','scholarLevelId']
+                exclude: ['createdAt', 'updatedAt', 'scholarLevelId']
             },
         })
 
@@ -68,7 +68,7 @@ export const getScholarLevelStoreData = async (req, res) => {
 
         return res.json(storeInfo)
 
-    }catch (error) {
+    } catch (error) {
         return res.status(500).json({ message: error.message })
     }
 }
