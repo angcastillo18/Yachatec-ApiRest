@@ -27,4 +27,7 @@ export const StoreItem = sequelize.define('StoreItem', {
         type: DataTypes.INTEGER,
         defaultValue: 0
     },
+    colors: {
+        type: DataTypes.JSON,
+    }
 }, { tableName: 'StoreItems' });
